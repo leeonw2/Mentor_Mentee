@@ -1,15 +1,22 @@
-package com.example.mentor_mentee.domain.controller;
-
-import com.example.mentor_mentee.App;
+package com.example.mentor_mentee.domain.post.controller;
+import com.example.mentor_mentee.domain.post.dto.request.PostRequestDto;
+import com.example.mentor_mentee.domain.post.dto.response.PostResponseDto;
+import com.example.mentor_mentee.domain.post.entity.Post;
+import com.example.mentor_mentee.domain.post.repository.PostRepository;
+import com.example.mentor_mentee.domain.post.service.PostService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/posts")
 public class PostController {
+    private final PostService postService ;
 
-    @PostMapping("/")
-    public String createPost(String title, String content) {
-        return title + ": " + content + "게시글 생성 완료";
+    @PostMapping
+    public PostResponseDto createPost(@RequestBody PostRequestDto postRequestDto) {
+        PostResponseDto responseDto = postService.createPost(postRequestDto);
+        return responseDto;
     }
 
     @GetMapping

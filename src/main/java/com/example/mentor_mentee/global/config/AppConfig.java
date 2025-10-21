@@ -19,4 +19,5 @@ public class AppConfig {
     public Integer myAge() {
         return  21;
     }
+
 }
